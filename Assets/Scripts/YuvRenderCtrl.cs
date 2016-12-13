@@ -49,8 +49,11 @@ public class YuvRenderCtrl : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		yTexture = transform.GetComponent<MeshRenderer> ().sharedMaterial.GetTexture ("_yTex") as Texture2D;
-		uvTexture = transform.GetComponent<MeshRenderer> ().sharedMaterial.GetTexture ("_uvTex") as Texture2D;
+		yTexture = new Texture2D (4, 4, TextureFormat.Alpha8, false, true);
+		uvTexture = new Texture2D (4, 4, TextureFormat.RGB24, false, true);
+
+		transform.GetComponent<MeshRenderer> ().sharedMaterial.SetTexture ("_yTex", yTexture);
+		transform.GetComponent<MeshRenderer> ().sharedMaterial.SetTexture ("_uvTex", uvTexture);
 
 		//注册transfer
 		setTransferByUnity (transformDelegate);
